@@ -18,7 +18,7 @@ def save_first_frame(video_path, dir_path, ext='jpg'):
     # dir_pathはフレームを保存するディレクトリ
     # extのデフォルトはjpg
 
-    video_name = os.path.basename(video_path).split('_')[0]  # 10588044(video_name)を取り出す
+    video_name = os.path.basename(video_path).split('.')[0]  # 10588044(video_name)を取り出す
 
     cap = cv2.VideoCapture(video_path)
 
@@ -26,19 +26,21 @@ def save_first_frame(video_path, dir_path, ext='jpg'):
         print("cap")
         sys.exit()
 
-    os.makedirs(dir_path, exist_ok=True)  # exit_ok=Trueとすると既存のディレクトリを指定してもエラーにならない
+    #os.makedirs(dir_path, exist_ok=True)  # exit_ok=Trueとすると既存のディレクトリを指定してもエラーにならない
     base_path = os.path.join(dir_path, video_name)  # 画像保存用のパスを作成
 
     digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))  # フレーム数の桁数を取得 int型はstr()で文字列にできる
+    n=0
 
+    while True:
+        ret, frame = cap.read()
+        if ret:
+            cv2.imwrite('{}_{}.{}'.format(base_path, str(n).zfill(digit), ext), frame)
+            n += 1
+        else:
+            cap.release()
+            return
 
-
-    ret, frame = cap.read()
-
-    cv2.imwrite('{}.{}'.format(base_path, ext), frame)
-
-    cap.release()
-
-def save_frames(filelist, dir_path="data_check"):
+def save_frames(filelist, dir_path):
     for video_path in filelist:
         save_first_frame(video_path, dir_path)

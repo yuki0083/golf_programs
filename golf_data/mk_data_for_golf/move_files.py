@@ -4,7 +4,7 @@ import os
 def make_dir(data_temp_path='data_temp'):
     if not os.path.exists(data_temp_path):
         os.makedirs(data_temp_path)
-
+"""
 #nwcampathからabst_num(10動画)に一つ抽出し、data_tempに移動
 def move_nwcam(nwcam_path = 'C:\\nwcam', data_temp_path = 'data_temp', abst_num = 10):
     nwcam_list = os.listdir(nwcam_path)
@@ -21,3 +21,12 @@ def move_nwcam(nwcam_path = 'C:\\nwcam', data_temp_path = 'data_temp', abst_num 
         nwcam_selected_list[i] = shutil.move(nwcam_selected_list[i], data_temp_path)
 
     return nwcam_selected_list
+"""
+#ディレクトリから動画ファイルパスのリストを取得
+def video_list(video_directory):
+    video_list = os.listdir(video_directory)
+    
+    for i in range(len(video_list)):
+        video_list[i] = video_directory+ '/' + video_list[i]
+
+    return video_list
