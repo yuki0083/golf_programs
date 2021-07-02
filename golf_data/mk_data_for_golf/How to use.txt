@@ -1,0 +1,2 @@
+(golf) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs/golf_data/mk_data_for_golf$ python3 main.py
+動画ディレクトリのパスを入力:../raw_data
