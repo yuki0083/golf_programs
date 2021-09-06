@@ -2,16 +2,6 @@ import cv2
 import os
 import glob
 import sys
-"""
-#ここを指定
-#opencvで日本語のパス名は使えない！！
-select_path ="data_check"
-
-#video_path_directry = os.path.join("../nwcam/original", select_path)#ビデオのあるディレクトリ
-dir_path = select_path #画像の保存場所
-video_path_directry = 'data_temp'
-filelist = glob.glob(video_path_directry+"/*")#ディレクトリ内のすべてのビデオのパスを取得
-"""
 
 def save_first_frame(video_path, dir_path, ext='jpg'):
     # video_pathは元の動画のパス
@@ -26,7 +16,7 @@ def save_first_frame(video_path, dir_path, ext='jpg'):
         print("cap")
         sys.exit()
 
-    #os.makedirs(dir_path, exist_ok=True)  # exit_ok=Trueとすると既存のディレクトリを指定してもエラーにならない
+    
     base_path = os.path.join(dir_path, video_name)  # 画像保存用のパスを作成
 
     digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))  # フレーム数の桁数を取得 int型はstr()で文字列にできる

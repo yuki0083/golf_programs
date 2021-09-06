@@ -256,3 +256,5 @@ sleep_check-PascalVOC-export/
 golf_data/raw_data
 golf_data/mk_data_for_golf/golf
 golf_data/annotated_data
+結果/
+発表用/

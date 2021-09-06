@@ -1,2 +1,14 @@
-(golf) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs/golf_data/mk_data_for_golf$ python3 main.py
-動画ディレクトリのパスを入力:../raw_data
+(golf) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs/golf_data/mk_data_for_golf
+$ python3 main.py --video_dir_path ./raw_videos
+
+
+
+
+usage: main.py [-h] [--img_dir_path IMG_DIR_PATH] --video_dir_path VIDEO_DIR_PATH
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --img_dir_path IMG_DIR_PATH
+                        画像保存するディレクトリパス
+  --video_dir_path VIDEO_DIR_PATH
+                        動画のディレクトリパス
