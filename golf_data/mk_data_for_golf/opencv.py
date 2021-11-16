@@ -3,7 +3,7 @@ import os
 import glob
 import sys
 
-def save_first_frame(video_path, dir_path, ext='jpg'):
+def save_first_frame(video_path, dir_path, frame_space, ext='jpg'):
     # video_pathは元の動画のパス
     # dir_pathはフレームを保存するディレクトリ
     # extのデフォルトはjpg
@@ -25,12 +25,13 @@ def save_first_frame(video_path, dir_path, ext='jpg'):
     while True:
         ret, frame = cap.read()
         if ret:
-            cv2.imwrite('{}_{}.{}'.format(base_path, str(n).zfill(digit), ext), frame)
+            if n % frame_space == 0:
+                cv2.imwrite('{}_{}.{}'.format(base_path, str(n).zfill(digit), ext), frame)
             n += 1
         else:
             cap.release()
             return
 
-def save_frames(filelist, dir_path):
+def save_frames(filelist, dir_path, frame_space):
     for video_path in filelist:
-        save_first_frame(video_path, dir_path)
+        save_first_frame(video_path, dir_path, frame_space)
