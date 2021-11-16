@@ -27,6 +27,8 @@ class video_processing:
         row_num=0
         frame_num = 0
         delay = 1
+        #円を描く位置のリスト[[X, Y, W, H]]
+        draw_geometory_list = []
         while True:
             detected_frame_num = self.detected_df.iloc[row_num]['frame_num']
             ret, frame = video.read()
@@ -37,7 +39,10 @@ class video_processing:
                     Y = int(self.detected_df.iloc[row_num]['y'] * self.video_H)
                     W = self.detected_df.iloc[row_num]['w'] * self.video_W
                     H = self.detected_df.iloc[row_num]['h'] * self.video_H
-                    write_circle(frame, X, Y, W, H )
+                    draw_geometory_list.append([X, Y, W, H])
+                    for draw_geometory in draw_geometory_list:
+                        #write_circle(frame, X, Y, W, H)
+                        write_circle(frame, draw_geometory[0], draw_geometory[1], draw_geometory[2], draw_geometory[3] )
                     if row_num < len(self.detected_df)-1:
                         row_num += 1
                 else:
