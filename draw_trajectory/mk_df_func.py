@@ -7,7 +7,7 @@ import glob
 
 #指定したディレクトリ内に軌道描画済みのビデオが存在するかを確認
 def check_trafectory_video_exist(exp_n_path):
-    result = glob.glob(exp_n_path + '*' + '_trajectory.MP4')
+    result = glob.glob(exp_n_path + '*' + '_trajectory.mp4')
     if result == []:
         return False
     else:
