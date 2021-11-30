@@ -24,7 +24,7 @@ def not_trajectory_path(project):
         exist = check_trafectory_video_exist(exp_n_path)
         if exist == False:
             result.append(exp_n_path)
-        return result
+    return result
 
 #txtのデータを２次元リストに変換[[フレーム番号, クラス, x, y, w, h, conf]]
 def mk_detected_data_list(video_dir):    
