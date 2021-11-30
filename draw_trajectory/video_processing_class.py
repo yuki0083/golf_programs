@@ -16,7 +16,7 @@ class video_processing:
 
     def write_trajectory(self):
         
-        #動画の保存方法を指定(#TODO　動画の名前にtrajectoryをつける)
+        #動画の保存方法を指定
         fmt = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')#MP4
         writer = cv2.VideoWriter(self.video_dir + self.video_name +'_trajectory.mp4', fmt, self.video_fps, (self.video_W, self.video_H))
 

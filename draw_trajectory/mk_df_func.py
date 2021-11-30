@@ -31,7 +31,7 @@ def mk_detected_data_list(video_dir):
     detcte_data_list = []
     detected_txt_list = glob.glob(video_dir+'labels/*.txt')
     for txt_path in detected_txt_list:
-        frame_num = int((os.path.basename(txt_path).split('.')[0]).split('_')[1])#txtファイルの名前からフレーム番号を取得
+        frame_num = int((os.path.basename(txt_path).split('.')[0]).split('_')[-1])#txtファイルの名前からフレーム番号を取得
         with open(txt_path) as f:
             l = f.read().split()
             l = [int(s) if i == 0 else float(s) for i, s  in enumerate(l)]
