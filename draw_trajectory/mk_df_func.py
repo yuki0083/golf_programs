@@ -35,6 +35,18 @@ def mk_detected_data_list(video_dir):
         with open(txt_path) as f:
             l = f.read().split()
             l = [int(s) if i == 0 else float(s) for i, s  in enumerate(l)]
+            
+            #二つ以上検出した場合にはconfの高い方のみdfに入れる
+            detected_object_num = int(len(l)/6)
+            if detected_object_num >= 2:
+                max_conf = 0
+                for i in range(detected_object_num):
+                    conf = l[5+i*6]
+                    if conf > max_conf:
+                        max_conf = conf
+                        max_conf_object_num = i
+                l = l[max_conf_object_num*6:max_conf_object_num*6+6]
+          
             l.insert(0, frame_num)
             detcte_data_list.append(l)
     return detcte_data_list
