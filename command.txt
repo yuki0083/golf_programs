@@ -1,12 +1,11 @@
-#.venvはsleepcheck
+
 
 yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs
 $ source ../sleep_check_programs/yolov5/.venv/bin/activate
 
 
 (.venv) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs
-$ python3 ./yolov5/detect.py --source ./golf_data/raw_data/IMG_9733.MP4 --weights ./weights/transfer_learning/best.pt --img 416 --save-txt --save-conf
-
+$ python3 ./yolov5/detect.py --source ./golf_data/raw_data/IMG_9733.MP4 --weights ./weights/best.pt --img 416 --save-txt --save-conf --project yolov5/../runs/detect
 --save-txt をつけると(cls, 標準化されたxywh)
 
 --save-txt --save-conf (cls,標準化されたxywh,conf)
