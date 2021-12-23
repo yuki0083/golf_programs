@@ -37,25 +37,14 @@ def mk_detected_data_list(video_dir):
             l = f.read().split("\n")
             for one_detect in l:
                 tmp_detect_data = one_detect.split()
+                if tmp_detect_data == []:
+                    continue
                 tmp_detect_data = [int(s) if i == 0 else float(s) for i, s  in enumerate(tmp_detect_data)]
                 cls = str(tmp_detect_data[0])
                 conf = tmp_detect_data[5]
                 if (cls not in detected_cls_dic) or (detected_cls_dic[cls][5] < conf) :
                     detected_cls_dic[cls] = tmp_detect_data
-                
-            """
-            #二つ以上検出した場合にはconfの高い方のみdfに入れる
-            detected_object_num = int(len(l)/6)
-            if detected_object_num >= 2:
-                #print("フレーム番号{}".format(frame_num))
-                max_conf = 0
-                for i in range(detected_object_num):
-                    conf = l[5+i*6]
-                    if conf > max_conf:
-                        max_conf = conf
-                        max_conf_object_num = i
-                l = l[max_conf_object_num*6:max_conf_object_num*6+6]
-            """
+
             for detected_data in list(detected_cls_dic.values()):
                 detected_data.insert(0, frame_num)
                 detcte_data_list.append(detected_data)
