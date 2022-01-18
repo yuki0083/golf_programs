@@ -68,9 +68,6 @@ def df_to_csv(df, video_dir):
     print("finish writing csv in {}".format(video_dir))
 
 
-
-
-
 def main():
     #推論データの保存場所
     project = 'runs/detect'

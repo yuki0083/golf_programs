@@ -1,19 +1,9 @@
-from numpy import heaviside
 import pandas as pd
 import math 
+import utils
 
 golf_club_length_inch = 45.7 #ドライバー141モデルの長さの平均値:45.7インチ
 golf_club_length_meter = golf_club_length_inch / 39.37 #インチをメートルに変換
-# w_pixel = 1080
-# h_pixel= 1920
-
-#video_propertyからvideo_propertyを取得
-def get_video_prop(video_property_path):
-    df = pd.read_csv(video_property_path)
-    df = df.drop('Unnamed: 0', axis=1)
-    video_property_dic =df.to_dict(orient='records')[0]
-    return video_property_dic
-
 
 #gripとheadが両方検出出来ているフレームのみ取り出し
 def df_remove_missing(df):
@@ -66,15 +56,23 @@ def cal_meter_per_pixel(df_frame_data,golf_club_length_meter):
     meter_per_pixel = golf_club_length_meter/golf_club_length_pixel
     return meter_per_pixel
 
+#meter_per_pixel.txtに結果を保存
+def save_to_txt(meter_per_pixel, video_dir_path):
+    with open(video_dir_path + 'meter_per_pixel.txt', 'w') as f:
+        f.write(str(meter_per_pixel))
+    return None
+
 def main():
     video_property_csv_path ="runs/detect/exp/video_property.csv"
-    video_property_dic = get_video_prop(video_property_csv_path)
-    df = pd.read_csv('runs/detect/exp/detected_df.csv')
-    df = df.drop('Unnamed: 0', axis=1)
+    detected_df_csv_path = "runs/detect/exp/detected_df.csv"
+    video_dir_path = "runs/detect/exp/"
+    video_property_dic = utils.get_video_prop(video_property_csv_path)
+    df = utils.read_csv_to_df(detected_df_csv_path)
     df = df_remove_missing(df)
     df_frame_data = mk_frame_df(df, video_property_dic)
     meter_per_pixel = cal_meter_per_pixel(df_frame_data, golf_club_length_meter)
-    print('meter_per_mixel:{}.'.format(meter_per_pixel))
+    save_to_txt(meter_per_pixel, video_dir_path)
+    print('meter_per_mixel:{}'.format(meter_per_pixel))
 
 if __name__ == "__main__":
     main()
