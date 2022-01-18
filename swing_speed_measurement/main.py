@@ -4,8 +4,16 @@ import math
 
 golf_club_length_inch = 45.7 #ドライバー141モデルの長さの平均値:45.7インチ
 golf_club_length_meter = golf_club_length_inch / 39.37 #インチをメートルに変換
-w_pixel = 1080
-h_pixel= 1920
+# w_pixel = 1080
+# h_pixel= 1920
+
+#video_propertyからvideo_propertyを取得
+def get_video_prop(video_property_path):
+    df = pd.read_csv(video_property_path)
+    df = df.drop('Unnamed: 0', axis=1)
+    video_property_dic =df.to_dict(orient='records')[0]
+    return video_property_dic
+
 
 #gripとheadが両方検出出来ているフレームのみ取り出し
 def df_remove_missing(df):
@@ -19,8 +27,11 @@ def df_remove_missing(df):
         previous_frame_num = frame_num
     df = df.iloc[both_detect_raw_num_list]
     return df
+#各フレームでのgripとheadの位置のdfを作成
+def mk_frame_df(df, video_property_dic):
+    w_pixel = video_property_dic["W"]
+    h_pixel = video_property_dic["H"]
 
-def mk_frame_df(df):
     frame_data_columns = ['frame_num', 'grip_position_x', 'grip_positon_y', 'head_posiion_x', 'head_position_y', 'grip_head_distance'] 
     frame_data_list = []
     frame_num_list = df['frame_num'].values.tolist()
@@ -28,8 +39,8 @@ def mk_frame_df(df):
     for frame_num in unique_frame_num_list:
         
         df_one_frame = df[df['frame_num']== frame_num]
-        grip_index = df_one_frame.index[df_one_frame['class']== 0].tolist()[0]
-        head_index = df_one_frame.index[df_one_frame['class']== 1].tolist()[0]
+        grip_index = df_one_frame.index[df_one_frame['class']== 0].tolist()[0]#gripの行番号(index)を取得
+        head_index = df_one_frame.index[df_one_frame['class']== 1].tolist()[0]#headの行番号(index)を取得
 
         grip_position_x = float(df_one_frame.at[grip_index, 'x']) * w_pixel
         grip_position_y = float(df_one_frame.at[grip_index, 'y']) * h_pixel
@@ -55,10 +66,15 @@ def cal_meter_per_pixel(df_frame_data,golf_club_length_meter):
     meter_per_pixel = golf_club_length_meter/golf_club_length_pixel
     return meter_per_pixel
 
-df = pd.read_csv('runs/detect/exp/detected_df.csv')
-df = df.drop('Unnamed: 0', axis=1)
-df = df_remove_missing(df)
-df_frame_data = mk_frame_df(df)
-meter_per_pixel = cal_meter_per_pixel(df_frame_data, golf_club_length_meter)
-print('meter_per_mixel:{}.'.format(meter_per_pixel))
+def main():
+    video_property_csv_path ="runs/detect/exp/video_property.csv"
+    video_property_dic = get_video_prop(video_property_csv_path)
+    df = pd.read_csv('runs/detect/exp/detected_df.csv')
+    df = df.drop('Unnamed: 0', axis=1)
+    df = df_remove_missing(df)
+    df_frame_data = mk_frame_df(df, video_property_dic)
+    meter_per_pixel = cal_meter_per_pixel(df_frame_data, golf_club_length_meter)
+    print('meter_per_mixel:{}.'.format(meter_per_pixel))
 
+if __name__ == "__main__":
+    main()
