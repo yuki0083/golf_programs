@@ -1,15 +1,8 @@
-#from mk_df_func import  not_trajectory_path
-#from detected_df_class import detected_df
 from video_processing_class import video_processing
 import mk_head_df_func
 
 
 def main():
-    """
-    #推論データの保存場所
-    project = 'runs/detect'
-    name = 'exp'
-    """
     video_path = "runs/detect/exp/IMG_9733.MP4"
     video_dir = "runs/detect/exp/"
     detected_df_csv_path = "runs/detect/exp/detected_df.csv"

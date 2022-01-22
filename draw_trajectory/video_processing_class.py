@@ -1,7 +1,5 @@
 import cv2
-from pandas.core import frame
 from opencv_func import write_circle
-import sys
 import os
 import utils
 
