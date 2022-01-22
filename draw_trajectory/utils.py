@@ -1,6 +1,6 @@
 import pandas as pd
 
-#video_propertyからvideo_property(W,H,Frame_count,FPS)を取得
+#video_property.csvからvideo_property(W,H,Frame_count,FPS)を取得
 def get_video_prop(video_property_path):
     df = pd.read_csv(video_property_path)
     df = df.drop('Unnamed: 0', axis=1)

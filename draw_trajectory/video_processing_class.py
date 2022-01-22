@@ -1,16 +1,18 @@
 import cv2
 from pandas.core import frame
-from opencv_func import get_video_prop,  write_circle
+from opencv_func import write_circle
 import sys
 import os
+import utils
 
 class video_processing:
-    def __init__(self,df):
-        self.detected_df = df.df
-        self.video_path = df.video_path
-        self.video_dir = df.video_dir
+    def __init__(self,df, video_path, video_dir, video_property_path):
+        self.detected_df = df
+        self.video_path = video_path
+        self.video_dir = video_dir
         self.video_name = os.path.basename(self.video_path).split(".")[0]
-        self.video_W , self.video_H, self.video_count, self.video_fps = get_video_prop(self.video_path)
+        self.video_property_path = video_property_path
+        self.video_W , self.video_H, self.video_count, self.video_fps = utils.get_video_prop(self.video_property_path).values()
         
         
 
