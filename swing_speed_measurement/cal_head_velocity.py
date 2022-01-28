@@ -20,6 +20,7 @@ def cal_head_velocity(df, video_property_dic, meter_per_pixel, conf_thres=0.5):
     #iphone のスローモーション撮影に依存
 
     #head(class 1)&conf>0.5 のdfを取り出し
+    #copy()をつけることでsettingWithCopyWarningを回避
     df_head_speed = df[(df["class"] == 1) & (df["conf"] > conf_thres)].copy()
     #df_head_positonにmoving_distance,frame_space, swing_speedを追加
     moving_distance_list = []
