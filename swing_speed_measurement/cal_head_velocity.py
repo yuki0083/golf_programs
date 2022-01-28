@@ -20,7 +20,7 @@ def cal_head_velocity(df, video_property_dic, meter_per_pixel, conf_thres=0.5):
     #iphone のスローモーション撮影に依存
 
     #head(class 1)&conf>0.5 のdfを取り出し
-    df_head_speed = df[(df["class"] == 1) & (df["conf"] > conf_thres)]
+    df_head_speed = df[(df["class"] == 1) & (df["conf"] > conf_thres)].copy()
     #df_head_positonにmoving_distance,frame_space, swing_speedを追加
     moving_distance_list = []
     frame_space_list = []
@@ -49,7 +49,7 @@ def cal_head_velocity(df, video_property_dic, meter_per_pixel, conf_thres=0.5):
         previous_frame_num = frame_num
 
         i+=1
-    df_head_speed.loc[:,'moving_distance'] = moving_distance_list
+    df_head_speed.loc[:, 'moving_distance'] = moving_distance_list
     df_head_speed.loc[:, 'frame_space'] = frame_space_list
     df_head_speed.loc[:, 'swing_speed'] = swing_speed_list
     return df_head_speed

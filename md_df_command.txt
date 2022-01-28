@@ -1,5 +1,0 @@
-(.venv) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs$ python3 ./mk_df/mk_df.py
-
-
-dfのcsvファイルがない場合に、そのフォルダにそれを作成する
-各クラスで確信度の最も高いものだけdfに保存

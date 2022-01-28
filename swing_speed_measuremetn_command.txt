@@ -1,0 +1,1 @@
+(.venv) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs$ python swing_speed_measurement/cal_head_velocity.py
