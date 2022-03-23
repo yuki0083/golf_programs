@@ -1,6 +1,7 @@
+from ast import arg
 import cv2
 import pandas as pd
-#import sys
+import argparse
 
 
 def get_video_prop(video_path):
@@ -30,10 +31,18 @@ def mk_video_prop_csv(video_prop, video_dir, video_prop_columns=["W", "H", "Fram
     print("finish writing csv in {}".format(video_dir))
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--video_dir',required=True)
+    parser.add_argument('--video_path', required=True)
+    args =parser.parse_args()
+    """
     video_path = 'runs/detect/exp/IMG_9733.mp4'
     video_dir= "runs/detect/exp/"
     video_prop = get_video_prop(video_path)
     mk_video_prop_csv(video_prop, video_dir)
+    """
+    video_prop = get_video_prop(args.video_path)
+    mk_video_prop_csv(video_prop, args.video_dir)
 
 if __name__ == '__main__':
     main()

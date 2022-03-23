@@ -1,5 +1,8 @@
+#argparseを活用
 vido_property.py のvideo_path
 draw_trajectory/main.pyのvideo_path
 
+
 #meter_per_pixelの手順削除
 #video_propertyの削除
+

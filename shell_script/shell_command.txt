@@ -1,0 +1,5 @@
+$shell_script/video_processing.sh runs/detect/exp/
+
+#物体検出済みの動画があるフォルダパスを入力
+#ゴルフヘッドの軌道描画
+#スイングスピードの計算
