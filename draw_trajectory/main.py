@@ -3,7 +3,7 @@ import mk_head_df_func
 
 
 def main():
-    video_path = "runs/detect/exp/IMG_9733.MP4"
+    video_path = "runs/detect/exp/IMG_9733.mp4"
     video_dir = "runs/detect/exp/"
     detected_df_csv_path = "runs/detect/exp/detected_df.csv"
     video_property_path = "runs/detect/exp/video_property.csv"

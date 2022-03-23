@@ -30,7 +30,7 @@ def mk_video_prop_csv(video_prop, video_dir, video_prop_columns=["W", "H", "Fram
     print("finish writing csv in {}".format(video_dir))
 
 def main():
-    video_path = 'runs/detect/exp/IMG_9733.MP4'
+    video_path = 'runs/detect/exp/IMG_9733.mp4'
     video_dir= "runs/detect/exp/"
     video_prop = get_video_prop(video_path)
     mk_video_prop_csv(video_prop, video_dir)
