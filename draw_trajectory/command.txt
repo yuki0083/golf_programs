@@ -1,1 +1,0 @@
-(.venv) yuki@DESKTOP-LR0N5GQ:/mnt/c/Users/yuki/python-projects/golf_programs/draw_trajectory$ python main.py
